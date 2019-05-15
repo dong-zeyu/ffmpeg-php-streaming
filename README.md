@@ -1,6 +1,6 @@
-# FFMpeg PHP Wrapper
+# FFMpeg-PHP Video Streaming Tool
 
-This is the instance-decoding and streaming wrapper for FFMpeg written in PHP. It uses HLS protocol to streaming video.
+This is an instant-decoding and streaming tool written in PHP based on FFMpeg. It uses HLS protocol to stream videos.
 
 ## Requirement
 
