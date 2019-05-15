@@ -2,6 +2,21 @@
 
 This is an instant-decoding and streaming tool written in PHP based on FFMpeg. It uses HLS protocol to stream videos.
 
+## Features
+
+### Pros
+
+- Support decoding for all kinds of video files that FFMpeg supports.
+- Support all client device that uses HTML5.
+- Fast and instantly decoding without using cache, thus little loads for disk.
+- Support for multiple audio tracks and subtile tracks.
+- Support for multiple resolution.
+
+### Cons
+
+- Resources Consuming (since it is instantly decoding and no cache is used)
+- A few videos may not be streamed smoothly. (since the inaccuracy seek for FFMpeg).
+
 ## Requirement
 
 - PHP
