@@ -16,8 +16,8 @@ $format = array(
 );
 $content_type = array(
     "video" => "Content-Type: video/MP2T",
-    "audio" => "Content-Type: text/vtt",
-    "subtitle" => "Content-Type: video/MP2T"
+    "audio" => "Content-Type: video/MP2T",
+    "subtitle" => "Content-Type: text/vtt"
 );
 $ffmpeg = "ffmpeg";
 $ffprob = "ffprobe";
