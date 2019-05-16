@@ -19,7 +19,7 @@ function force_param($key, $array) {
 function get_full_url($src) {
     $scheme = !key_exists("HTTPS", $_SERVER) || $_SERVER["HTTPS"] == "off" ? "http" : "https";
     if(substr($src, 0, 1) == "/") {
-        return $scheme . "://127.0.0.1:" . $_SERVER['SERVER_PORT'] . encodeURI($src) . "?download=1";
+        return $scheme . "://127.0.0.1:" . $_SERVER['SERVER_PORT'] . encodeURI($src);
     } else {
         return $src;
     }
