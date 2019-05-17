@@ -87,7 +87,7 @@ $language = key_exists("tags", $stream) && key_exists("language", $stream["tags"
 $default_str = $default ? "YES" : "NO";
 $default = false;
 ?>
-#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",DEFAULT=<?php echo $default_str ?>,NAME="<?php echo $name?>",LANGUAGE="<?php echo $language ?>",URI="<?php printf("m3u8.php?src=%s&index=%d&length=%s&encoders=,,&quality=&type=subtitle", rawurlencode($src), $stream["index"], $length) ?>" 
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",DEFAULT=<?php echo $default_str ?>,NAME="<?php echo $name?>",LANGUAGE="<?php echo $language ?>",URI="<?php printf("m3u8.php?src=%s&index=%d&length=%s&encoders=,,webvtt&quality=&type=subtitle", rawurlencode($src), $stream["index"], $length) ?>" 
 <?php endforeach ?>
 <?php if(count($videos) == 1 && count($audios) == 1): ?>
 <?php

@@ -20,7 +20,7 @@ function ffmpeg_prog($args) {
     $cv = check_param("cv", $args) ? "-c:v " . $args["cv"] : "-c:v copy";
     $cv = $cv == "-c:v h264" ? $cv . " -profile:v high" : $cv;
     $ca = check_param("ca", $args) ? "-c:a " . $args["ca"] : "-c:a copy";
-    $cs = check_param("cs", $args) ? "-c:s " . $args["cs"] : "-c:s webvtt";
+    $cs = check_param("cs", $args) ? "-c:s " . $args["cs"] : "-c:s copy";
     $quality = check_param("quality", $args) ? "-s " . $args["quality"] : "";
     $maps = array();
     if(key_exists("maps", $args)){
