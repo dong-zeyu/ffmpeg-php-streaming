@@ -3,7 +3,7 @@ require_once("utils.php");
 require_once("config.php");
 
 function ffmpeg_prog($args) {
-    global $content_type, $format, $segment_time, $types, $ffmpeg;
+    global $content_type, $format, $segment_time, $types, $ffmpeg, $default_args;
     $type = $_GET["type"];
     if(!in_array($type, $types)) {
         http_response_code(400);
@@ -41,9 +41,7 @@ function ffmpeg_prog($args) {
         $cv,
         $ca,
         $cs,
-        "-preset ultrafast",
-        "-level 5.0",
-        "-crf 28",
+        $default_args,
         $quality,
         $output_offset,
         $format,

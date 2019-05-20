@@ -22,5 +22,6 @@ $content_type = array(
     "subtitle" => "Content-Type: text/vtt"
 );
 $ffmpeg = "ffmpeg";
+$default_args = "-preset ultrafast -level 5.0 -crf 28";
 $ffprob = "ffprobe";
 ?>
