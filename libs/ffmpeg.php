@@ -1,6 +1,6 @@
 <?php
-include "utils.php";
-include "config.php";
+require_once("utils.php");
+require_once("config.php");
 
 function ffmpeg_prog($args) {
     global $content_type, $format, $segment_time, $types, $ffmpeg;
@@ -32,6 +32,7 @@ function ffmpeg_prog($args) {
 
     $ffmpeg_args = array(
         $ffmpeg,
+        "-v fatal",
         $ss,
         $auth,
         $input,
@@ -47,43 +48,28 @@ function ffmpeg_prog($args) {
         $output_offset,
         $format,
         "-",
-        // "2>&1"
     );
-    // echo implode(" ", $ffmpeg_args) . "\n";
-    // die;
+    $cmd = implode(" ", $ffmpeg_args);
     set_time_limit($segment_time[$type]);
     header($content_type[$_GET["type"]]);
-    passthru(implode(" ", $ffmpeg_args), $ret);
-    if($ret != 0) {
-        http_response_code(500);
-        echo implode(" ", $ffmpeg_args) . "\n";
-        echo "Return Code: " . $ret;
-    }
+    run($cmd, $stdout, true);
 }
 
 function ffprob_prog($input) {
     global $ffprob;
     $auth = $auth = key_exists("HTTP_AUTHORIZATION", $_SERVER) ? "-headers \"Authorization: " . $_SERVER['HTTP_AUTHORIZATION'] . "\"" : "";
-    $cmd = array(
+    $ffprob_args = array(
         $ffprob,
+        "-v fatal",
         "-show_format",
         "-show_streams",
         "-print_format json",
         $auth,
         "\"" . $input . "\""
     );
-    $data = array();
-    exec(implode(" ", $cmd), $data, $ret);
-    $data = implode("\n", $data);
-    if($ret != 0) {
-        http_response_code(500);
-        echo implode(" ", $cmd) . "\n";
-        echo $data . "\n";
-        echo $ret . "\n";
-        exit;
-    }
-    $data = json_decode($data, true);
+    $cmd = implode(" ", $ffprob_args);
+    run($cmd, $stdout, false);
 
-    return $data;
+    return json_decode($stdout, true);
 }
 ?>
