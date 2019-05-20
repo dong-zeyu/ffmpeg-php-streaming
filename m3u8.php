@@ -13,7 +13,7 @@ $length = $_GET["length"];
 $type = $_GET["type"];
 if(!in_array($type, $types)) {
     http_response_code(400);
-    die("The specific type is not found!");
+    die("The specified type is not found!");
 }
 ?>
 #EXTM3U
