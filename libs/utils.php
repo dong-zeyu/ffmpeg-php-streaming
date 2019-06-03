@@ -2,6 +2,7 @@
 require_once("config.php");
 
 function run($cmd, &$stdout, $passthru) {
+    ignore_user_abort(true);
     $proc = proc_open($cmd, [1 => ["pipe", "w"], 2 => ["pipe", "w"]], $pipes);
     if (is_resource($proc)) {
         if($passthru) {
