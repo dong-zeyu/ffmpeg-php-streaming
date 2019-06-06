@@ -8,7 +8,7 @@ $ffmpeg_args = array(
     $ffmpeg,
     "-v fatal",
     get_auth_str(),
-    "-i " . get_full_url($_GET["src"]),
+    "-i '" . get_full_url($_GET['src']) . "'",
     "-f webvtt",
     "-",
 );

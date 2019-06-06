@@ -10,7 +10,7 @@ function ffmpeg_prog($args) {
         die("The specific type is not found!");    
     }
 
-    $input = "-i " . "\"" . $args["input"] . "\"";
+    $input = "-i '${args['input']}'";
     $format = "-f " . $format[$type];
     $t = "-t ". $segment_time[$type];
     $start_time = $args["seg"] * $segment_time[$type];
@@ -63,7 +63,7 @@ function ffprob_prog($input) {
         "-show_streams",
         "-print_format json",
         $auth,
-        "\"" . $input . "\""
+        "'$input'"
     );
     $cmd = implode(" ", $ffprob_args);
     run($cmd, $stdout, false);
