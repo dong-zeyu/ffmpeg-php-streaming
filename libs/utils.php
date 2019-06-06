@@ -50,4 +50,8 @@ function get_full_url($src) {
         return $src;
     }
 }
+
+function get_auth_str() {
+    return key_exists("HTTP_AUTHORIZATION", $_SERVER) ? "-headers \"Authorization: " . $_SERVER['HTTP_AUTHORIZATION'] . "\"" : "";
+}
 ?>

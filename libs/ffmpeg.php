@@ -16,7 +16,7 @@ function ffmpeg_prog($args) {
     $start_time = $args["seg"] * $segment_time[$type];
     $ss = "-ss " . $start_time;
     $output_offset = "-output_ts_offset " . $start_time;
-    $auth = $auth = key_exists("HTTP_AUTHORIZATION", $_SERVER) ? "-headers \"Authorization: " . $_SERVER['HTTP_AUTHORIZATION'] . "\"" : "";
+    $auth = get_auth_str();
     $cv = check_param("cv", $args) ? "-c:v " . $args["cv"] : "-c:v copy";
     $cv = $cv == "-c:v h264" ? $cv . " -profile:v high" : $cv;
     $ca = check_param("ca", $args) ? "-c:a " . $args["ca"] : "-c:a copy";
@@ -55,7 +55,7 @@ function ffmpeg_prog($args) {
 
 function ffprob_prog($input) {
     global $ffprob;
-    $auth = $auth = key_exists("HTTP_AUTHORIZATION", $_SERVER) ? "-headers \"Authorization: " . $_SERVER['HTTP_AUTHORIZATION'] . "\"" : "";
+    $auth = get_auth_str();
     $ffprob_args = array(
         $ffprob,
         "-v fatal",
