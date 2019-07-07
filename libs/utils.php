@@ -3,20 +3,18 @@ require_once("config.php");
 
 function run($cmd, &$stdout, $passthru) {
     ignore_user_abort(true);
-    $proc = proc_open($cmd, [1 => ["pipe", "w"], 2 => ["pipe", "w"]], $pipes);
+    $proc = proc_open($cmd, [1 => ["pipe", "w"]], $pipes);
     if (is_resource($proc)) {
         if($passthru) {
             fpassthru($pipes[1]);
         } else {
             $stdout = stream_get_contents($pipes[1]);
         }
-        $stderr = stream_get_contents($pipes[2]);
         $ret = proc_close($proc);
         if($ret != 0) {
             http_response_code(500);
             echo "$cmd\n";
             echo "Return Code: $ret\n";
-            echo "------------Output------------\n$stderr";
             exit;
         }
     } else {
