@@ -45,7 +45,7 @@ function get_full_url($src) {
     if(substr($src, 0, 1) == "/") {
         return $scheme . "://127.0.0.1:" . $_SERVER['SERVER_PORT'] . encodeURI($src);
     } else {
-        return $src;
+        return encodeURI($src);
     }
 }
 
