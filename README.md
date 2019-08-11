@@ -39,20 +39,6 @@ See libs/config.php. You may need to change paths for `$ffmpeg` and `$ffmprob`.
 
 Here is an example using video-js with hls plugin:
 
-```html
-<head>
-  <link href="https://vjs.zencdn.net/7.5.4/video-js.css" rel="stylesheet">
-</head>
-<body>
-  <video id="my-video" class="video-js vjs-default-skin" controls>
-    <source src="m3u8.php?src=/Sample_video.rmvb&quality=hd480" type="application/x-mpegURL">
-  </video>
-  <script src='https://vjs.zencdn.net/7.5.4/video.js'></script>
-  <script src="https://unpkg.com/@videojs/http-streaming@1.10.2/dist/videojs-http-streaming.min.js"></script>
-  <script>
-    player = videojs("my-video");
-  </script>
-</body>
-```
+    demo.html?src=/Sample_video.rmvb
 
 where `Sample_video.rmvb` located in `http(s)://<your-domain>/Sample_video.rmvb`.
