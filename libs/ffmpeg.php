@@ -32,7 +32,6 @@ function ffmpeg_prog($args) {
 
     $ffmpeg_args = array(
         $ffmpeg,
-        "-v fatal",
         $ss,
         $auth,
         $input,
@@ -58,7 +57,6 @@ function ffprob_prog($input) {
     $auth = get_auth_str();
     $ffprob_args = array(
         $ffprob,
-        "-v fatal",
         "-show_format",
         "-show_streams",
         "-print_format json",

@@ -3,18 +3,35 @@ require_once("config.php");
 
 function run($cmd, &$stdout, $passthru) {
     ignore_user_abort(true);
-    $proc = proc_open($cmd, [1 => ["pipe", "w"]], $pipes);
+    $stdout = "";
+    $stderr = "";
+    $proc = proc_open($cmd, [1 => ["pipe", "w"], 2=>["pipe", "w"]], $pipes);
     if (is_resource($proc)) {
-        if($passthru) {
-            fpassthru($pipes[1]);
-        } else {
-            $stdout = stream_get_contents($pipes[1]);
+        while(!feof($pipes[1]) || !feof($pipes[2])) {
+            $r = [$pipes[1], $pipes[2]];
+            $w = NULL;
+            $w = NULL;
+            if(stream_select($r, $w, $e, 1)) {
+                foreach ($r as $s) {
+                    $buf = fread($s, 65536);
+                    if($s == $pipes[1]) {
+                        if($passthru) {
+                            echo $buf;
+                        } else {
+                            $stdout .= $buf;
+                        }
+                    } elseif($s == $pipes[2]) {
+                        $stderr .= $buf;
+                    }
+                }
+            }
         }
         $ret = proc_close($proc);
         if($ret != 0) {
             http_response_code(500);
             echo "$cmd\n";
             echo "Return Code: $ret\n";
+            echo $stderr;
             exit;
         }
     } else {
